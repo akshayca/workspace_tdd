@@ -1,4 +1,4 @@
-package com.workspace_tdd_bdd.strings.custom_exceptions;
+package com.workspace_tdd.strings.custom_exceptions;
 
 public class EmptyStringException extends Exception {
     

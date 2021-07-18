@@ -1,12 +1,13 @@
-package com.workspace_tdd_bdd.strings;
+package com.workspace_tdd.strings;
 
 import java.util.HashSet;
 
-import com.workspace_tdd_bdd.strings.custom_exceptions.EmptyStringException;
+import com.workspace_tdd.strings.custom_exceptions.EmptyStringException;
 
 public class LongestSubstring {
 
     //Given a string str, find the length of the longest substring without repeating characters.
+    
     public int lengthOfLongestSubstring(String str)  throws EmptyStringException{
         
         //Throw an exception for empty string 

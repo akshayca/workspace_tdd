@@ -1,17 +1,17 @@
-package com.workspace_tdd_bdd.tdd;
-
-
-import com.workspace_tdd_bdd.strings.LongestSubstring;
-import com.workspace_tdd_bdd.strings.custom_exceptions.EmptyStringException;
+package com.workspace_tdd.tdd.strings;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
+
+import com.workspace_tdd.strings.LongestSubstring;
+import com.workspace_tdd.strings.custom_exceptions.EmptyStringException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -36,7 +36,7 @@ public class LongestSubstringTest {
       this.longestSubstring = new LongestSubstring();
     
     }
-    
+    @DisplayName("Test if correct length of longest substring is returned")
     @ParameterizedTest
     @MethodSource("inputStrings")
     public void testLongestSubstring_ShouldReturnLongestSubStrLen(String str, int expected) throws EmptyStringException{
@@ -49,12 +49,13 @@ public class LongestSubstringTest {
 
     }
     
+    @DisplayName("Test if correct Exception is thrown")
     @Test
     public void testLongestSubstring_StringIsEmpty_ShouldThrowEmptyStringException() throws EmptyStringException {
         
         Exception exception = assertThrows(EmptyStringException.class, () ->
         longestSubstring.lengthOfLongestSubstring(""));
-        
+
         assertEquals("You have passed an empty string", exception.getMessage());
 
       }

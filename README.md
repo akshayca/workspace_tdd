@@ -1,2 +1,2 @@
-# workspace_tdd_bdd
-Unit testing framework using TDD and BDD
+# workspace_tdd
+Unit testing framework using TDD

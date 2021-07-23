@@ -1,8 +1,18 @@
-language: java
-jdk: openjdk8
-# after_success:
-#   - mvn coveralls:report
+jdk: openjdk10
 
-install: true
+addons:
+  sonarcloud:
+    organization: "paru"
+    token:
+      secure: "CViM58HaoUbDR8t11ttd2DB5YkP7A/OlVLXFaCzZP99tKt36AUEVTqO2UudpVt814+EnTbz+1k5VvAj8rOp0Yvv9P+YKRqeJTsuD3MWu1F6Doavbw1xzxxbuJSeMtbu1B16VMO3PS0RmLiExJ5UjianQoSO6SxhpLtvk43SN2Rlt6TPZgYqFb3fuqPaXifoUNeCE9loJIebTN3ybZ2J3kMV0ciXKm5XixuGxzCCsxCeDW+QJiGy1gOHy6VYsK4yHQxATzPUufOD1TJvqGDIlanaNWFCCPSKhJwZpPOomF0LSqbYVwTsUvvMjqic+VHvN6AmIyO2b0UgNbgkHny6gYvkEygQHcYe2uf7SXI7y+w3xK1Nmoza2k7Aruwn41LCQms2rytZnBWDLXPeWCrfP/b7M2sLKCQ77t8cCEWim0q7Yja8KL0JEhkRXM2GlpzEkQdQ+/IgPzzSpdic46cEuZq9Od8Z9fp3kreQ2sPI2GbQCVJeGwcdugpwR3xJmR4dSNxBMf/j/rVU0e55+54rUWxnt7XjgDVG6y++qS5x29KyB/mGUeU5q7xuqh543C3AKdJTBZIZIqXGbjmZug5aubmXmHMUwoTmqCazdCUBS5RVp8eKqFjsY1AvW1CaYGh7QFH0TDmb4+4VHP5UXzI5vlvsSWhRzy8ZrKkIoPNUGm5E="
+
 script:
-- mvn test
+  - # do stuff with OpenJDK 10
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
+  - export JAVA_HOME=$HOME/openjdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
+
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn test
